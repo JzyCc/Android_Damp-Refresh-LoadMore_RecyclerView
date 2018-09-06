@@ -11,7 +11,7 @@ import android.view.MotionEvent;
  * author Jzy(Xiaohuntun)
  * date 18-9-4
  */
-public class DampRecyclerViewChild extends RecyclerView {
+public class DampRecyclerViewChild extends RecyclerView  {
     private int mInitialDownY;
 
     public DampRecyclerViewChild(Context context) {
@@ -49,7 +49,7 @@ public class DampRecyclerViewChild extends RecyclerView {
                 int nowY = (int)ev.getY();
                 int offsetY = mInitialDownY-nowY;
                 mInitialDownY = nowY;
-                if(!canScrollVertically(-1)&&offsetY<0){
+                if((!canScrollVertically(-1)&&offsetY<0)||(!canScrollVertically(1)&&offsetY>0)){
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
                 break;
