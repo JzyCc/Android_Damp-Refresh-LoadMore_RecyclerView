@@ -268,7 +268,7 @@ public class DampRecyclerViewParent extends LinearLayout implements NestedScroll
                         return true;
                     }
                     if(offsetY>=0){
-                        if(isRefreshState == REFRESH_ING&&mChangedTopViewMarginTop>mInitialTopViewMarginTop){
+                        if(isRefreshState == REFRESH_ING&&mChangedTopViewMarginTop>=mInitialTopViewMarginTop){
                             isDampTopOrBottom = DAMP_TOP;
                             return true;
                         }
