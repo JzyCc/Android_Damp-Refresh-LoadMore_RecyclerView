@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="stop refresh"/>
-    <com.example.com.dampscrollview.damprv.DampRecyclerViewParent
+    <com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -21,5 +21,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#3334"></com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
-    </com.example.com.dampscrollview.damprv.DampRecyclerViewParent>
+    </com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
 </LinearLayout>

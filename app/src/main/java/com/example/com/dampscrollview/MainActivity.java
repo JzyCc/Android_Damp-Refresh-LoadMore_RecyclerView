@@ -4,12 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.com.dampscrollview.damprv.DampRecyclerViewParent;
+import com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout;
 import com.example.com.dampscrollview.damprv.DampRefreshListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btButton = (Button)findViewById(R.id.bt_button);
-        final DampRecyclerViewParent dampRecyclerViewParent = (DampRecyclerViewParent)findViewById(R.id.dv_content);
-        dampRecyclerViewParent.setTopView();
-        dampRecyclerViewParent.setBottomView();
+        final DampRefreshAndLoadMoreLayout dampRefreshAndLoadMoreLayout = (DampRefreshAndLoadMoreLayout)findViewById(R.id.dv_content);
+        dampRefreshAndLoadMoreLayout.setTopView();
+        dampRefreshAndLoadMoreLayout.setBottomView();
         RecyclerView mRvContent = (RecyclerView)findViewById(R.id.rv_content);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         mRvContent.setLayoutManager(layoutmanager);
@@ -32,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         btButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dampRecyclerViewParent.stopRefresh();
+                dampRefreshAndLoadMoreLayout.stopRefresh();
             }
         });
-        dampRecyclerViewParent.addOnDampRefreshListen(new DampRefreshListener() {
+        dampRefreshAndLoadMoreLayout.addOnDampRefreshListen(new DampRefreshListener() {
             @Override
             public void getScrollChanged(int dy, int topViewPosition) {
             }

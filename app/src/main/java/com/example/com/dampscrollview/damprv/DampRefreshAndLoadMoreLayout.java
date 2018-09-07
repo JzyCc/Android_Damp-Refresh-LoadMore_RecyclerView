@@ -19,7 +19,7 @@ import java.util.List;
  * author Jzy(Xiaohuntun)
  * date 18-9-4
  */
-public class DampRecyclerViewParent extends LinearLayout implements NestedScrollingParent {
+public class DampRefreshAndLoadMoreLayout extends LinearLayout implements NestedScrollingParent {
     private Context mContext;
 
     /**
@@ -198,18 +198,18 @@ public class DampRecyclerViewParent extends LinearLayout implements NestedScroll
 
 
 
-    public DampRecyclerViewParent(Context context) {
+    public DampRefreshAndLoadMoreLayout(Context context) {
         super(context);
         mContext = context;
     }
 
-    public DampRecyclerViewParent(Context context, AttributeSet attrs) {
+    public DampRefreshAndLoadMoreLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
 
     }
 
-    public DampRecyclerViewParent(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DampRefreshAndLoadMoreLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
     }
