@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:descendantFocusability="blocksDescendants">
+    <Button
+        android:id="@+id/bt_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="stop refresh"/>
     <com.example.com.dampscrollview.damprv.DampRecyclerViewParent
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:clipChildren="false"
         android:orientation="vertical">
         <com.example.com.dampscrollview.damprv.DampRecyclerViewChild
