@@ -219,8 +219,6 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
         super.onFinishInflate();
         if(getChildCount()>0){
             middleView = getChildAt(0);
-            //Log.i("jzy", "onFinishInflate: "+getChildCount());
-            //initThis();
         }
     }
     /**
@@ -248,6 +246,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 mInitialDownY = (int)ev.getY();
                 resetState();
                 if(isRefreshState==REFRESH_PRE){
+                    //刷新状态为初始状态时，发送需要初始化topview的消息
                     if(mDampRefreshListeners!=null){
                         for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
                             dampRefreshListener.shouldInitialize();
@@ -269,20 +268,24 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                     }
                     if(offsetY>=0){
                         if(isRefreshState == REFRESH_ING&&mChangedTopViewMarginTop>=mInitialTopViewMarginTop){
+                            //刷新时若topview在初始位置下面，则拦截事件
                             isDampTopOrBottom = DAMP_TOP;
                             return true;
                         }
                     }
                 }else if(!middleView.canScrollVertically(1)){
-                    if(offsetY>0){//判断子view是否滑动到顶部并且当前是上滑
+                    if(offsetY>0){
+                        //判断子view是否滑动到顶部并且当前是上滑
                         isDampTopOrBottom = DAMP_BOTTOM;
                         return true;
                     }
                 }
             case MotionEvent.ACTION_UP:
+                //重置必须要重置的状态
                 resetState();
                 break;
             case MotionEvent.ACTION_CANCEL:
+                //重置必须要重置的状态
                 resetState();
                 break;
         }
@@ -301,42 +304,44 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 int offsetY = mInitialDownY - nowY;
                 mInitialDownY = nowY;
                 if(isDampTopOrBottom == DAMP_TOP&&!middleView.canScrollVertically(-1)){
-                    if(offsetY<0||isRefreshState==REFRESH_ING){//判断当前是否是顶部可拉动状态
-                        isPullDownState = PULL_DOWN_ING;//复原下拉状态
-                    }
-                    if(isPullDownState == PULL_DOWN_ING){
-                        float nowMarginTop = (mChangedTopViewMarginTop-offsetY*measureDampTopValue(mChangedTopViewMarginTop));
-                        setTopMarigin(topView,topViewMarginParams,(int)nowMarginTop,mInitialTopViewMarginTop);
-                        mChangedTopViewMarginTop = (int) nowMarginTop;
-                        if(mDampRefreshListenerInChild!=null){
-                            mDampRefreshListenerInChild.getScrollChanged((int)(offsetY*measureDampTopValue(mChangedTopViewMarginTop)),mChangedTopViewMarginTop);
+                    if(topView!=null){
+                        if(offsetY<0||isRefreshState==REFRESH_ING){//判断当前是否是顶部可拉动状态
+                            isPullDownState = PULL_DOWN_ING;//复原下拉状态
                         }
-                        if(mDampRefreshListeners!=null){
-                            for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
-                                dampRefreshListener.getScrollChanged((int)(offsetY*measureDampTopValue(mChangedTopViewMarginTop)),mChangedTopViewMarginTop);
+                        if(isPullDownState == PULL_DOWN_ING){
+                            float nowMarginTop = (mChangedTopViewMarginTop-offsetY*measureDampTopValue(mChangedTopViewMarginTop));
+                            setTopMarigin(topView,topViewMarginParams,(int)nowMarginTop,mInitialTopViewMarginTop);
+                            mChangedTopViewMarginTop = (int) nowMarginTop;
+                            if(mDampRefreshListenerInChild!=null){
+                                mDampRefreshListenerInChild.getScrollChanged((int)(offsetY*measureDampTopValue(mChangedTopViewMarginTop)),mChangedTopViewMarginTop);
                             }
-                        }
-                        if(mChangedTopViewMarginTop > 0){
-                            //当前下拉距离足够刷新
-                          if(isRefreshState != REFRESH_ING){
-                              isRefreshState = REFRESH_READY;
-                              if(mDampRefreshListenerInChild!=null){
-                                  mDampRefreshListenerInChild.refreshReady();
-                              }
-                              if(mDampRefreshListeners!=null){
-                                  for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
-                                      dampRefreshListener.refreshReady();
-                                  }
-                              }
-                          }
-                        }else {
-                            //当前下拉距离不够刷新
-                            if(isRefreshState != REFRESH_ING)
-                                isRefreshState = REFRESH_CANNOT;
-                        }
-                        if(nowMarginTop < mInitialTopViewMarginTop){
-                            //如果顶部view回到原位但是仍然在上滑时添加此标记
-                            isPullDownState = PULL_DOWN_COMPLETE;
+                            if(mDampRefreshListeners!=null){
+                                for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
+                                    dampRefreshListener.getScrollChanged((int)(offsetY*measureDampTopValue(mChangedTopViewMarginTop)),mChangedTopViewMarginTop);
+                                }
+                            }
+                            if(mChangedTopViewMarginTop > 0){
+                                //当前下拉距离足够刷新
+                                if(isRefreshState != REFRESH_ING){
+                                    isRefreshState = REFRESH_READY;
+                                    if(mDampRefreshListenerInChild!=null){
+                                        mDampRefreshListenerInChild.refreshReady();
+                                    }
+                                    if(mDampRefreshListeners!=null){
+                                        for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
+                                            dampRefreshListener.refreshReady();
+                                        }
+                                    }
+                                }
+                            }else {
+                                //当前下拉距离不够刷新
+                                if(isRefreshState != REFRESH_ING)
+                                    isRefreshState = REFRESH_CANNOT;
+                            }
+                            if(nowMarginTop < mInitialTopViewMarginTop){
+                                //如果顶部view回到原位但是仍然在上滑时添加此标记
+                                isPullDownState = PULL_DOWN_COMPLETE;
+                            }
                         }
                     }
                 }else if(isDampTopOrBottom == DAMP_BOTTOM&&!canScrollVertically(1)){
@@ -358,30 +363,38 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 break;
             case MotionEvent.ACTION_UP:
                 if(isDampTopOrBottom == DAMP_TOP){
-                    if(isRefreshState == REFRESH_CANNOT){
-                        startDampTopToHomeAnimation();
-                        isRefreshState = REFRESH_PRE;
-                        resetTopViewState();
-                    }else if(mChangedTopViewMarginTop<0){
-                        startDampTopToHomeAnimation();
-                        resetTopViewState();
-                    }else if(isRefreshState == REFRESH_READY){
-                        startDampTopToRefreshAnimation();
-                        mChangedTopViewMarginTop = 0;
-                        isRefreshState = REFRESH_ING;
-                        if(mDampRefreshListenerInChild!=null){
-                            mDampRefreshListenerInChild.refreshing();
-                        }
-                        if(mDampRefreshListeners!=null){
-                            for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
-                                dampRefreshListener.refreshing();
-                            }
-                        }
-                    }else if(isRefreshState == REFRESH_ING&&mChangedTopViewMarginTop>=mTopViewHeight){
-                        startDampTopToRefreshAnimation();
-                        mChangedTopViewMarginTop = 0;
-                    }
-                    isPullDownState = PULL_DOWN_PRE;
+                   if(topView!=null){
+                       if(isRefreshState == REFRESH_CANNOT){
+                           //当下拉距离不够刷新时,执行该情景下动画，并初始化Refresh状态
+                           startDampTopToHomeAnimation();
+                           isRefreshState = REFRESH_PRE;
+                           resetTopViewState();
+                       }else if(mChangedTopViewMarginTop<0){
+                           //为解决刷新完成状态全交由外部决定的需求，此处可以实现在刷新状态时，topView尚未完全显示的时候可以带有回弹效果
+                           startDampTopToHomeAnimation();
+                           resetTopViewState();
+                       }else if(isRefreshState == REFRESH_READY){
+                           //当状态为即将触发刷新时，执行该情景下动画，并且矫正topView结果位置
+                           startDampTopToRefreshAnimation();
+                           mChangedTopViewMarginTop = 0;
+                           //刷新必需步骤执行后将状态置为正在刷新
+                           isRefreshState = REFRESH_ING;
+                           if(mDampRefreshListenerInChild!=null){
+                               mDampRefreshListenerInChild.refreshing();
+                           }
+                           if(mDampRefreshListeners!=null){
+                               for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
+                                   dampRefreshListener.refreshing();
+                               }
+                           }
+                       }else if(isRefreshState == REFRESH_ING&&mChangedTopViewMarginTop>=mTopViewHeight){
+                           //为解决刷新完成状态全交由外部决定的需求，此处实现正在刷新时，topView完全显示的时候可以带有回弹效果
+                           startDampTopToRefreshAnimation();
+                           mChangedTopViewMarginTop = 0;
+                       }
+                   }
+                    //重置拖动状态
+                    resetState();
                 }else if(isDampTopOrBottom == DAMP_BOTTOM){
                     startDampMiddleAndBottomAnimation();
                     isUpglide = UPGLIDE_PRE;
@@ -414,8 +427,8 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 if((!canScrollVertically(-1)&&offsetY>0&&isPullDownState == PULL_DOWN_COMPLETE)
                         ||(!canScrollVertically(1)&&offsetY<0&&isUpglide == UPGLIDE_COMPLETE)){
                     //sendCancelEvent(mLastMoveMotionEvent);
-                    Log.i("jzy", "dispatchTouchEvent: "+"sendDown");
-                    sendDownEvent(mLastMoveMotionEvent);//重新发送down 来激活拦截事件方法
+                    //判断上述前置条件，模拟down事件激活拦截方法，将事件交由子View
+                    sendDownEvent(mLastMoveMotionEvent);
                     resetState();
                 }
                 break;
@@ -659,7 +672,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
      * 停止刷新
      */
     public void stopRefresh(){
-        if(isRefreshState == REFRESH_ING){
+        if(isRefreshState == REFRESH_ING&&topView!=null){
 
             ValueAnimator animator = ValueAnimator.ofInt(mChangedTopViewMarginTop,mInitialTopViewMarginTop);
             animator.setDuration(200);
