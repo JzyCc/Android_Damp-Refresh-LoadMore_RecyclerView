@@ -112,7 +112,6 @@ public class DampTopViewChild extends FrameLayout implements DampRefreshListener
 
     @Override
     public void refreshing() {
-        Log.i("jzy", "refreshing: "+"refresh");
         isRefreshState = REFRESH_ING;
         tvRefreshState.setText("正在刷新");
         ivRefreshState.setBackgroundResource(R.drawable.refresh_ing);

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 dampRefreshAndLoadMoreLayout.stopRefresh();
             }
         });
-        dampRefreshAndLoadMoreLayout.addOnDampRefreshListen(new DampRefreshListener() {
+        dampRefreshAndLoadMoreLayout.addOnDampRefreshListener(new DampRefreshListener() {
             @Override
             public void getScrollChanged(int dy, int topViewPosition) {
             }

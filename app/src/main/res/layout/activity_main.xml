@@ -13,13 +13,14 @@
     <com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:clipChildren="false"
         android:orientation="vertical">
         <com.example.com.dampscrollview.damprv.DampRecyclerViewChild
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"></com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
+            android:overScrollMode="never"
+            android:background="#3131"></com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
     </com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
 </LinearLayout>
