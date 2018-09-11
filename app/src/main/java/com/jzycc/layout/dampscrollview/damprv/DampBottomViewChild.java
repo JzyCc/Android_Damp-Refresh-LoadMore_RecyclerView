@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.damprv;
+package com.jzycc.layout.dampscrollview.damprv;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -12,7 +12,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.example.com.dampscrollview.R;
+import com.jzycc.layout.dampscrollview.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

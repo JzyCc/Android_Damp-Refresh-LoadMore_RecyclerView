@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "28.0.2"
     defaultConfig {
-        applicationId "com.example.com.dampscrollview"
+        applicationId "com.jzycc.layout.dampscrollview"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -28,6 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-
 
 }

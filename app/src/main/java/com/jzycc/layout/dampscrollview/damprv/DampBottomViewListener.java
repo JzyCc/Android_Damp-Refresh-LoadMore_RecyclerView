@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.damprv;
+package com.jzycc.layout.dampscrollview.damprv;
 
 /**
  * author Jzy(Xiaohuntun)

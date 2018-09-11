@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.damprv;
+package com.jzycc.layout.dampscrollview.damprv;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.com.dampscrollview.R;
+import com.jzycc.layout.dampscrollview.R;
 
 import org.w3c.dom.Text;
 

@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.widget;
+package com.jzycc.layout.dampscrollview.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

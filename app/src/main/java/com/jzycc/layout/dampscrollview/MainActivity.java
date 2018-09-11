@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview;
+package com.jzycc.layout.dampscrollview;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.com.dampscrollview.damprv.DampBottomViewChild;
-import com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout;
-import com.example.com.dampscrollview.damprv.DampRefreshListener;
-import com.example.com.dampscrollview.damprv.DampTopViewChild;
+import com.jzycc.layout.dampscrollview.damprv.DampBottomViewChild;
+import com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout;
+import com.jzycc.layout.dampscrollview.damprv.DampRefreshListener;
+import com.jzycc.layout.dampscrollview.damprv.DampTopViewChild;
 
 public class MainActivity extends AppCompatActivity {
 

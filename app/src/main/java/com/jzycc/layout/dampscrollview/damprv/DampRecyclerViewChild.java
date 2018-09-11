@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.damprv;
+package com.jzycc.layout.dampscrollview.damprv;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -28,19 +28,16 @@ public class DampRecyclerViewChild extends RecyclerView  {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
-        //Log.i("jzy", "onInterceptTouchEvent: "+"child,"+e.getAction());
         return super.onInterceptTouchEvent(e);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        //Log.i("jzy", "onTouchEvent: "+"child,"+e.getAction());
         return super.onTouchEvent(e);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        //Log.i("jzy", "dispatchTouchEvent: "+"child,"+ev.getAction());
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
                 mInitialDownY = (int)ev.getY();

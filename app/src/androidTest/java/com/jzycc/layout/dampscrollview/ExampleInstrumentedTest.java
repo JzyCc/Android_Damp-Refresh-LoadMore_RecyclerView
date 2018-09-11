@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview;
+package com.jzycc.layout.dampscrollview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

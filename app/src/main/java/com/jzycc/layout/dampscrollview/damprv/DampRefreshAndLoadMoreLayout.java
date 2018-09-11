@@ -1,4 +1,4 @@
-package com.example.com.dampscrollview.damprv;
+package com.jzycc.layout.dampscrollview.damprv;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
