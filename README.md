@@ -8,17 +8,18 @@
 ### 1. 在XML布局中加入如下代码
 
 ```
- <com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
+<com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.example.com.dampscrollview.damprv.DampRecyclerViewChild
+        android:layout_height="match_parent"
+        android:background="#3131">
+        <com.jzycc.layout.dampscrollview.damprv.DampRecyclerViewChild
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never">
-        </com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
-    </com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
+        </com.jzycc.layout.dampscrollview.damprv.DampRecyclerViewChild>
+    </com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
 ```
 
 ```
