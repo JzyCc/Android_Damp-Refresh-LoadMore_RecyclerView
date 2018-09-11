@@ -8,8 +8,6 @@ public interface DampLoadMoreListener {
 
     void startLoadMore();
 
-    void stopLoadMore();
-
     void getScrollChanged(int dy,int topViewPosition);
 
 }

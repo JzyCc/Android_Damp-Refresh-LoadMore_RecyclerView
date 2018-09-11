@@ -7,11 +7,5 @@ package com.example.com.dampscrollview.damprv;
 public interface DampRefreshListener {
     void getScrollChanged(int dy,int topViewPosition);
 
-    void refreshComplete();
-
-    void refreshing();
-
-    void refreshReady();
-
-    void shouldInitialize();
+    void startRefresh();
 }

@@ -10,17 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="stop refresh"/>
+    <Button
+        android:id="@+id/bt_stop_load"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="stop load"/>
     <com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#3131">
         <com.example.com.dampscrollview.damprv.DampRecyclerViewChild
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:background="#3131"></com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
+            android:overScrollMode="never"></com.example.com.dampscrollview.damprv.DampRecyclerViewChild>
     </com.example.com.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
 </LinearLayout>

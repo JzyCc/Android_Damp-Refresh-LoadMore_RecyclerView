@@ -22,7 +22,7 @@ import org.w3c.dom.Text;
  * author Jzy(Xiaohuntun)
  * date 18-9-6
  */
-public class DampTopViewChild extends FrameLayout implements DampRefreshListener {
+public class DampTopViewChild extends FrameLayout implements DampTopViewListener {
 
     private Context mContext;
 
@@ -108,6 +108,9 @@ public class DampTopViewChild extends FrameLayout implements DampRefreshListener
     @Override
     public void refreshComplete() {
         tvRefreshState.setText("刷新完成");
+        if(animator!=null){
+            animator.cancel();
+        }
     }
 
     @Override
@@ -124,15 +127,13 @@ public class DampTopViewChild extends FrameLayout implements DampRefreshListener
         tvRefreshState.setText("松开刷新");
     }
 
+
     @Override
     public void shouldInitialize() {
         tvRefreshState.setText("下拉刷新");
         ivRefreshState.setRotation(0);
         ivRefreshState.setBackgroundResource(R.drawable.pull_down);
         isRefreshState = REFRESH_PRE;
-        if(animator!=null){
-            animator.cancel();
-        }
 
     }
 
