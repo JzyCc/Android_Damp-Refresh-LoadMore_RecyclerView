@@ -1,4 +1,3 @@
-# Android_DampRefreshAndLoadMoreLayout
 ## DampRefreshAndLoadMoreLayout介绍
 1. recyclerview在它里面可以更灵活的转交事件。
 2. 根据配置可以实现刷新和加载更多的功能。
@@ -89,7 +88,7 @@ dampRefreshAndLoadMoreLayout.stopLoadMoreAnimation();
 //当所有数据加载完成后调用此方法
 dampRefreshAndLoadMoreLayout.loadOver();
 ```
-### 3.就这样？自定义出自己的刷新和加载吧！
+### 3.就这样？自定义自己的刷新和加载吧！
 - #### 自定义刷新View
 ##### 新建一个Class文件,此处我继承FrameLayout，实现DampTopViewListener接口
 
@@ -133,7 +132,7 @@ dampRefreshAndLoadMoreLayout.setTopView(new TopViewChild(context),topViewHeight)
 ```
 
 ```
-此处应当传入自定以topView的高度（单位：dp）
+此处应当传入自定义topView的高度（单位：dp）
 ```
 - #### 自定义加载View
 ##### 新建一个Class文件,此处我继承FrameLayout，实现DampBottomViewListener接口
@@ -170,6 +169,6 @@ public class BottomViewChild extends FrameLayout implements DampBottomViewListen
 dampRefreshAndLoadMoreLayout.setTopView(new BottomViewChild(context),topViewHeight);
 ```
 ```
-此处应当传入自定以bottomView的高度（单位：dp）
+此处应当传入自定义bottomView的高度（单位：dp）
 ```
 
