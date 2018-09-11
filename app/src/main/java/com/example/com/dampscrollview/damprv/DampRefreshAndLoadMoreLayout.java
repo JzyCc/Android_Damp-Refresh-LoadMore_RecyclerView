@@ -70,7 +70,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     /**
      * 加载完成
      */
-    private static final int LOAD_MORE_COMPLETE = 3;
+    private static final int LOAD_MORE_ING_II = 3;
 
     /**
      * 记录当前加载状态
@@ -217,12 +217,25 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
 
     private DampTopViewListener mDampRefreshListenerInChild;
 
+
+    public interface DampRefreshListener {
+        void getScrollChanged(int dy,int topViewPosition);
+
+        void startRefresh();
+    }
+
     /**
      * 监听刷新接口列表
      */
     private List<DampRefreshListener> mDampRefreshListeners = new ArrayList<>();
 
     private DampBottomViewListener mDampLoadMoreListenerInChild;
+
+    public interface DampLoadMoreListener {
+        void getScrollChanged(int dy,int bottomViewPosition);
+
+        void startLoadMore();
+    }
 
     /**
      * 监听加载接口列表
@@ -234,17 +247,20 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     public DampRefreshAndLoadMoreLayout(Context context) {
         super(context);
         mContext = context;
+        this.setOrientation(LinearLayout.VERTICAL);
     }
 
     public DampRefreshAndLoadMoreLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+        this.setOrientation(LinearLayout.VERTICAL);
 
     }
 
     public DampRefreshAndLoadMoreLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+        this.setOrientation(LinearLayout.VERTICAL);
     }
 
     @Override
@@ -259,29 +275,29 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     private void initDampUpGlideListener(){
         if(middleView instanceof RecyclerView){
             RecyclerView recyclerView = (RecyclerView)middleView;
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                    super.onScrollStateChanged(recyclerView, newState);
-                }
-
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    if(!recyclerView.canScrollVertically(1)){
-                        if(isLoadMoreState == LOAD_MORE_PRE){
-                            if(mDampLoadMoreListeners!=null){
-                                for(DampLoadMoreListener dampLoadMoreListener : mDampLoadMoreListeners){
-                                    dampLoadMoreListener.startLoadMore();
-                                }
-                            }
-                            if(mDampLoadMoreListenerInChild!=null){
-                                mDampLoadMoreListenerInChild.startLoadMore();
-                            }
-                        }
-                    }
-                }
-            });
+//            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//                @Override
+//                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                    super.onScrollStateChanged(recyclerView, newState);
+//                }
+//
+//                @Override
+//                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                    super.onScrolled(recyclerView, dx, dy);
+//                    if(!recyclerView.canScrollVertically(1)){
+//                        if(isLoadMoreState == LOAD_MORE_PRE&&dy>0){
+//                            if(mDampLoadMoreListeners!=null){
+//                                for(DampLoadMoreListener dampLoadMoreListener : mDampLoadMoreListeners){
+//                                    dampLoadMoreListener.startLoadMore();
+//                                }
+//                            }
+//                            if(mDampLoadMoreListenerInChild!=null){
+//                                mDampLoadMoreListenerInChild.startLoadMore();
+//                            }
+//                        }
+//                    }
+//                }
+//            });
         }
     }
     /**
@@ -518,7 +534,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                                 if(mChangedMiddleHeight<0){
                                     //如果MidlleView回到原位但是仍在下拉时添加此标记
                                     isUpglide = UPGLIDE_COMPLETE;
-                                    isLoadMoreState = LOAD_MORE_PRE;
+                                    isLoadMoreState = LOAD_MORE_ING_II;
                                     mChangedMiddleHeight = 0;
                                 }
                             }
@@ -1061,13 +1077,11 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
             if(mDampRefreshListenerInChild!=null){
                 mDampRefreshListenerInChild.refreshComplete();
             }
-
 //            if(mDampRefreshListeners!=null){
 //                for(DampRefreshListener dampRefreshListener : mDampRefreshListeners){
 //                    dampRefreshListener.refreshComplete();
 //                }
 //            }
-
         }
     }
 

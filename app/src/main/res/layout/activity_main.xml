@@ -19,8 +19,6 @@
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:orientation="vertical"
         android:background="#3131">
         <com.example.com.dampscrollview.damprv.DampRecyclerViewChild
             android:id="@+id/rv_content"
