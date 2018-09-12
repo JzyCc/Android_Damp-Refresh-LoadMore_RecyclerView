@@ -1,4 +1,4 @@
-package com.jzycc.layout.dampscrollview.damprv;
+package com.jzycc.layout.damplayoutlibrary.bottomview;
 
 /**
  * author Jzy(Xiaohuntun)
@@ -11,5 +11,5 @@ public interface DampBottomViewListener {
 
     void cannotLoadMore();
 
-    void getScrollChanged(int dy,int topViewPosition);
+    void getScrollChanged(int dy, int topViewPosition);
 }

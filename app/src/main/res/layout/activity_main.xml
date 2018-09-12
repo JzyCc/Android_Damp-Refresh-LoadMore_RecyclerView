@@ -15,15 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="stop load"/>
-    <com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout
+    <com.jzycc.layout.damplayoutlibrary.layout.DampRefreshAndLoadMoreLayout
         android:id="@+id/dv_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#3131">
-        <com.jzycc.layout.dampscrollview.damprv.DampRecyclerViewChild
+        android:layout_height="match_parent">
+        <com.jzycc.layout.damplayoutlibrary.layout.DampRecyclerViewChild
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"></com.jzycc.layout.dampscrollview.damprv.DampRecyclerViewChild>
-    </com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout>
+            android:overScrollMode="never">
+        </com.jzycc.layout.damplayoutlibrary.layout.DampRecyclerViewChild>
+    </com.jzycc.layout.damplayoutlibrary.layout.DampRefreshAndLoadMoreLayout>
+
 </LinearLayout>

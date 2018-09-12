@@ -1,4 +1,4 @@
-package com.jzycc.layout.dampscrollview.damprv;
+package com.jzycc.layout.damplayoutlibrary.layout;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -180,7 +180,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     /**
      * topView的MarginLayoutParams
      */
-    private ViewGroup.MarginLayoutParams topViewMarginParams;
+    private MarginLayoutParams topViewMarginParams;
 
     /**
      * 保存最后一次MotionEvent
@@ -219,7 +219,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
 
 
     public interface DampRefreshListener {
-        void getScrollChanged(int dy,int topViewPosition);
+        void getScrollChanged(int dy, int topViewPosition);
 
         void startRefresh();
     }
@@ -232,7 +232,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     private DampBottomViewListener mDampLoadMoreListenerInChild;
 
     public interface DampLoadMoreListener {
-        void getScrollChanged(int dy,int bottomViewPosition);
+        void getScrollChanged(int dy, int bottomViewPosition);
 
         void startLoadMore();
     }
@@ -722,7 +722,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
      * 获取view的高度
      */
     private int getViewHeight(View view){
-        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         view.measure(0,h);
         return view.getMeasuredHeight();
     }
@@ -731,7 +731,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
     /**
      * set margintop 的方法
      */
-    private void setTopMarigin(View targetView,ViewGroup.MarginLayoutParams targetMarginParams,int mariginTopValue,int initialValue){
+    private void setTopMarigin(View targetView,MarginLayoutParams targetMarginParams,int mariginTopValue,int initialValue){
         if(mariginTopValue>=initialValue){
             targetMarginParams.setMargins(0,mariginTopValue,0,0);
             targetView.requestLayout();
@@ -962,7 +962,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 mDampRefreshListenerInChild = (DampTopViewListener) topView;
                 this.addView(topView,0,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(mContext,mTopViewHeight)));
                 //初始化topView相关
-                topViewMarginParams = (ViewGroup.MarginLayoutParams)topView.getLayoutParams();
+                topViewMarginParams = (MarginLayoutParams)topView.getLayoutParams();
                 mInitialTopViewMarginTop = -dp2px(mContext,mTopViewHeight);
                 mChangedTopViewMarginTop = mInitialTopViewMarginTop;
                 setTopMarigin(topView,topViewMarginParams,mInitialTopViewMarginTop,mInitialTopViewMarginTop);
@@ -983,7 +983,7 @@ public class DampRefreshAndLoadMoreLayout extends LinearLayout implements Nested
                 mTopViewHeight = topViewHeight;
                 this.addView(topView,0,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(mContext,mTopViewHeight)));
                 //初始化topView相关
-                topViewMarginParams = (ViewGroup.MarginLayoutParams)topView.getLayoutParams();
+                topViewMarginParams = (MarginLayoutParams)topView.getLayoutParams();
                 mInitialTopViewMarginTop = -dp2px(mContext,mTopViewHeight);
                 mChangedTopViewMarginTop = mInitialTopViewMarginTop;
                 setTopMarigin(topView,topViewMarginParams,mInitialTopViewMarginTop,mInitialTopViewMarginTop);

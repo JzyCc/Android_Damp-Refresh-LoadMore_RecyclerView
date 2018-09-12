@@ -1,22 +1,17 @@
-package com.jzycc.layout.dampscrollview.damprv;
+package com.jzycc.layout.damplayoutlibrary.topview;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jzycc.layout.dampscrollview.R;
-
-import org.w3c.dom.Text;
+import com.jzycc.layout.damplayoutlibrary.R;
 
 /**
  * author Jzy(Xiaohuntun)

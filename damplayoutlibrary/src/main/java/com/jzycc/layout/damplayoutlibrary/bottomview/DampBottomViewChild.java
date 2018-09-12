@@ -1,4 +1,4 @@
-package com.jzycc.layout.dampscrollview.damprv;
+package com.jzycc.layout.damplayoutlibrary.bottomview;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -13,10 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.jzycc.layout.dampscrollview.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
 
 /**
  * author Jzy(Xiaohuntun)

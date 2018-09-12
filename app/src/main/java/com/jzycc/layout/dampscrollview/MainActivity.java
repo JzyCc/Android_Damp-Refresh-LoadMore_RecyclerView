@@ -1,6 +1,5 @@
 package com.jzycc.layout.dampscrollview;
 
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.jzycc.layout.dampscrollview.damprv.DampBottomViewChild;
-import com.jzycc.layout.dampscrollview.damprv.DampRefreshAndLoadMoreLayout;
-import com.jzycc.layout.dampscrollview.damprv.DampRefreshListener;
-import com.jzycc.layout.dampscrollview.damprv.DampTopViewChild;
+import com.jzycc.layout.damplayoutlibrary.layout.DampRefreshAndLoadMoreLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void startRefresh() {
-                Log.i("jzy", "startRefresh: "+"startRefresh");
             }
         });
 
@@ -68,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void startLoadMore() {
-                Log.i("jzy", "startLoadMore: "+"startLoadMore");
             }
         });
 
