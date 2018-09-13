@@ -2,6 +2,7 @@ package com.jzycc.layout.dampscrollview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
+import com.jzycc.layout.damplayoutlibrary.bottomview.DampBottomViewChild;
 import com.jzycc.layout.damplayoutlibrary.layout.DampRecyclerViewChild;
 import com.jzycc.layout.damplayoutlibrary.layout.DampRefreshAndLoadMoreLayout;
+import com.jzycc.layout.damplayoutlibrary.topview.DampTopViewChild;
 import com.jzycc.layout.dampscrollview.vo.Movie;
 import com.jzycc.layout.dampscrollview.vo.ZhiHuVo;
 
@@ -35,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
         rvContent = (RecyclerView)findViewById(R.id.rv_content);
 
         dampRefreshAndLoadMoreLayout =  (DampRefreshAndLoadMoreLayout)findViewById(R.id.dv_content);
-        dampRefreshAndLoadMoreLayout.setTopView();
-        dampRefreshAndLoadMoreLayout.setBottomView();
+        DampTopViewChild dampTopViewChild = new DampTopViewChild(this);
+        DampBottomViewChild dampBottomViewChild = new DampBottomViewChild(this);
+        dampBottomViewChild.setImageColorResource(getResources().getColor(R.color.colorAccent));
+        dampTopViewChild.setImageColorResource(getResources().getColor(R.color.colorAccent));
+        dampTopViewChild.setTextColorResource(getResources().getColor(R.color.colorAccent));
+        dampRefreshAndLoadMoreLayout.setTopView(dampTopViewChild,DampTopViewChild.DAMPTOPVIEW_HEIGHT);
+        dampRefreshAndLoadMoreLayout.setBottomView(dampBottomViewChild,DampBottomViewChild.DAMPBOTTOMVIEW_HEIGHT);
         loadZhiHuVo();
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(MainActivity.this);
@@ -90,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                                     if(!loadOver){
                                         loadZhiHuVo();
                                         dampRefreshAndLoadMoreLayout.stopLoadMoreAnimation();
-                                        mAdapter.notifyDataSetChanged();
                                     }else {
                                         dampRefreshAndLoadMoreLayout.loadOver();
                                     }
@@ -119,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
         mPageList.clear();
         loadZhiHuVo();
         dampRefreshAndLoadMoreLayout.stopRefreshAnimation();
-        mAdapter.notifyDataSetChanged();
     }
     private void loadZhiHuVo(){
         if(count != mList.size()/pageSize){
