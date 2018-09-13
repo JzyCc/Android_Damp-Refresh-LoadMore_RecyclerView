@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         dampRefreshAndLoadMoreLayout =  (DampRefreshAndLoadMoreLayout)findViewById(R.id.dv_content);
         dampRefreshAndLoadMoreLayout.setTopView();
         dampRefreshAndLoadMoreLayout.setBottomView();
-
         loadZhiHuVo();
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(MainActivity.this);

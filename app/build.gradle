@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "28.0.2"
     defaultConfig {
         applicationId "com.jzycc.layout.dampscrollview"
         minSdkVersion 16
@@ -29,7 +28,7 @@ dependencies {
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    implementation 'com.github.JzyCc:DampRefreshAndLoadMoreLayout:1.0.1'
+    implementation 'com.github.JzyCc:DampRefreshAndLoadMoreLayout:1.0.2'
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
