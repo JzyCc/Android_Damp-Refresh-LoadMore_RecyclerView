@@ -28,8 +28,7 @@ dependencies {
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    implementation 'com.github.JzyCc:DampRefreshAndLoadMoreLayout:1.0.2'
-
+    implementation 'com.github.JzyCc:DampRefreshAndLoadMoreLayout:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
