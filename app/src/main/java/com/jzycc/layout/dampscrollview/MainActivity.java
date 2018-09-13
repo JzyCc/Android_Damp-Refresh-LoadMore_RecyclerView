@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         dampRefreshAndLoadMoreLayout.stopRefreshAnimation();
     }
     private void loadZhiHuVo(){
-        if(count != mList.size()/pageSize){
+        if(count+1 != mList.size()/pageSize){
             for (int i = count*pageSize; i<count*pageSize+pageSize;i++){
                 mPageList.add(mList.get(i));
             }
