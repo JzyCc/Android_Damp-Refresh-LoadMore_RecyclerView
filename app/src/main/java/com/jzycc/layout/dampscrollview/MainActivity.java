@@ -11,10 +11,8 @@ import android.widget.Button;
 
 import com.google.gson.Gson;
 import com.jzycc.layout.damplayoutlibrary.bottomview.DampBottomViewChild;
-import com.jzycc.layout.damplayoutlibrary.layout.DampRecyclerViewChild;
 import com.jzycc.layout.damplayoutlibrary.layout.DampRefreshAndLoadMoreLayout;
 import com.jzycc.layout.damplayoutlibrary.topview.DampTopViewChild;
-import com.jzycc.layout.dampscrollview.vo.Movie;
 import com.jzycc.layout.dampscrollview.vo.ZhiHuVo;
 
 import java.util.ArrayList;
